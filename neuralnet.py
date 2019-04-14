@@ -46,3 +46,7 @@ class Backpropagation_Neural_Net(object):
 
     self.WeightIH += X.T.dot(hidden_delta) * self.learning_rate
     self.WeightHO += self.z2.T.dot(output_delta) * self.learning_rate
+
+  def train (self, X, y):
+    o = self.forward_propagation(X)
+    self.back_propagation(X, y, o)
