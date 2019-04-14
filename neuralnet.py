@@ -38,3 +38,11 @@ class Backpropagation_Neural_Net(object):
     self.z3 = np.dot(self.z2, self.WeightHO) # dot product of hidden layer (z2) and second set of 6x1 weights
     o = self.activate(self.z3) # final activation function
     return o
+
+
+  def back_propagation(self, X, y, o):
+    output_delta = (y - o) * self.activateDerivative(o)
+    hidden_delta = output_delta.dot(self.WeightHO.T) * self.activateDerivative(self.z2)
+
+    self.WeightIH += X.T.dot(hidden_delta) * self.learning_rate
+    self.WeightHO += self.z2.T.dot(output_delta) * self.learning_rate
