@@ -50,3 +50,15 @@ class Backpropagation_Neural_Net(object):
   def train (self, X, y):
     o = self.forward_propagation(X)
     self.back_propagation(X, y, o)
+
+NN = Backpropagation_Neural_Net(0.2)
+
+while np.mean(np.square(y - NN.forward_propagation(X))) > 0.01:
+    NN.train(X, y)
+
+print ("Loss: \n" + str(np.mean(np.square(y - NN.forward_propagation(X))))) # mean sum squared loss
+print ("\n")
+
+for i in range(0,30):
+    print ("Predicted Output: \n" + str(NN.forward_propagation(np.genfromtxt('data_processedIN.csv', delimiter=',', dtype=float)[141+i])))
+    print ("Actual Output: \n" + str(np.genfromtxt('data_processedOUT.csv', delimiter=',', dtype=float)[141+i]))
