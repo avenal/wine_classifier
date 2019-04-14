@@ -29,3 +29,12 @@ class Backpropagation_Neural_Net(object):
   def activateDerivative(self, s):
     #derivative of activate
     return s * (1 - s)
+
+
+  def forward_propagation(self, X):
+    #forward_propagation through our network
+    self.z = np.dot(X, self.WeightIH) # dot product of X (input) and first set of 13x6 weights
+    self.z2 = self.activate(self.z) # activation function
+    self.z3 = np.dot(self.z2, self.WeightHO) # dot product of hidden layer (z2) and second set of 6x1 weights
+    o = self.activate(self.z3) # final activation function
+    return o
