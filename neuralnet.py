@@ -21,3 +21,11 @@ class Backpropagation_Neural_Net(object):
     print("WeightHiddenOutput:")
     print(self.WeightHO)
     print(self.WeightHO.shape)
+
+  def activate(self, s):
+    # activation function
+    return 1/(1+np.exp(-s))
+
+  def activateDerivative(self, s):
+    #derivative of activate
+    return s * (1 - s)
